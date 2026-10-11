@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f8fafc">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0d0f17">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="Kuesioner Hubungan & Visi Masa Depan - Menyelaraskan nilai, karakter, dan komitmen bersama.">
+  <title>Kuesioner Hubungan & Visi Masa Depan</title>
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app-container" id="app">
+    
+    <!-- Top Persistent Header -->
+    <header class="site-header" id="siteHeader">
+      <div class="header-inner">
+        <div class="brand" id="brandBtn" role="button" tabindex="0">
+          <div class="brand-icon">💍</div>
+          <div class="brand-info">
+            <h1 id="headerTitle">Relationship Vision</h1>
+            <p id="headerSubtitle">11 Bagian Penyelarasan Komitmen</p>
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <button class="btn-icon" id="themeToggleBtn" title="Ganti Tema" aria-label="Ganti Tema">
+            <span id="themeIcon">🌙</span>
+          </button>
+          <button class="btn-nav-switch" id="viewModeToggleBtn" style="display: none;">
+            <span id="viewModeIcon">📜</span>
+            <span id="viewModeText">Riwayat</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Interactive Progress Bar (Active only in Form View) -->
+      <div class="progress-container" id="progressWrapper" style="display: none;">
+        <div class="progress-meta">
+          <span id="sectionIndicatorText">Bagian 1 dari 11: Personal Info</span>
+          <span class="autosave-tag" id="autosaveTag">
+            <span class="autosave-dot"></span>
+            <span id="autosaveLabel">Tersimpan otomatis</span>
+          </span>
+        </div>
+        <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="9" id="progressTrack">
+          <div class="progress-fill" id="progressFill" style="width: 9%;"></div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Area: Views -->
+    <main>
+      
+      <!-- VIEW 1: WELCOME SCREEN -->
+      <section class="view-panel active" id="viewWelcome">
+        <div class="welcome-card">
+          <div class="welcome-badge">Kuesioner Eksklusif Pasangan</div>
+          <h2 class="welcome-title">Menuju Hubungan yang Lebih Bermakna & Terarah</h2>
+          <p class="welcome-desc">
+            Kuesioner ini dirancang untuk saling memahami secara jujur, mendalam, dan terbuka.
+            Tidak perlu terburu-buru, setiap kata dan pemikiranmu sangat dihargai.
+          </p>
+
+          <div class="welcome-highlights">
+            <div class="highlight-item">
+              <span class="highlight-icon">📱</span>
+              <div class="highlight-text">
+                <h4>Ramah Penggunaan HP</h4>
+                <p>Format per bagian yang nyaman dibaca, auto-expand textarea, dan tombol sentuh lega.</p>
+              </div>
+            </div>
+
+            <div class="highlight-item">
+              <span class="highlight-icon">💾</span>
+              <div class="highlight-text">
+                <h4>Simpan Otomatis (Auto-Save)</h4>
+                <p>Jawabanmu tersimpan otomatis setiap mengetik. Jika layar tertutup atau baterai habis, drafmu tidak akan hilang.</p>
+              </div>
+            </div>
+
+            <div class="highlight-item">
+              <span class="highlight-icon">🔒</span>
+              <div class="highlight-text">
+                <h4>Privasi & Transparansi Penuh</h4>
+                <p>Hasil jawaban langsung terkirim ke dashboard pasanganmu untuk didiskusikan bersama.</p>
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <button class="btn btn-primary" id="btnStartForm">
+              <span>Mulai Isi Kuesioner</span>
+              <span>→</span>
+            </button>
+            <button class="btn btn-secondary" id="btnResumeForm" style="display: none;">
+              <span>Lanjutkan Draf Sebelumnya</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 2: FORM STEPPER SCREEN -->
+      <section class="view-panel" id="viewForm">
+        <!-- Section Header Banner -->
+        <div class="section-banner" id="sectionBanner">
+          <div class="section-tag" id="sectionTag">SECTION 1 OF 11</div>
+          <h2 class="section-heading" id="sectionHeading">Personal Information</h2>
+          <p class="section-summary" id="sectionSummary">Kenalan lebih dekat dengan identitas dan latar belakang utamamu.</p>
+        </div>
+
+        <!-- Rendered Questions Container -->
+        <form id="questionForm" onsubmit="return false;">
+          <div class="questions-list" id="questionsContainer">
+            <!-- Dynamic questions injected by JavaScript -->
+          </div>
+        </form>
+      </section>
+
+      <!-- VIEW 3: SUCCESS SCREEN -->
+      <section class="view-panel" id="viewSuccess">
+        <div class="success-card">
+          <div class="success-icon-wrap">💝</div>
+          <h2 class="success-title">Terima Kasih Sudah Menjawab dengan Tulus</h2>
+          <p class="success-desc">
+            Semua jawabanmu telah berhasil dikirim dan tersimpan di dashboard pasanganmu. Kejujuran dan komitmenmu adalah pondasi terindah untuk melangkah bersama.
+          </p>
+
+          <div class="success-actions">
+            <button class="btn btn-whatsapp" id="btnNotifyWhatsapp">
+              <span>💬 Kabari Pasangan via WhatsApp</span>
+            </button>
+            <button class="btn btn-secondary" id="btnDownloadSummary">
+              <span>📥 Unduh Salinan Jawaban Saya (.txt)</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 4: RIWAYAT JAWABAN (REVIEWER HISTORY) -->
+      <section class="view-panel" id="viewDashboard">
+        <div class="dashboard-header">
+          <div class="dashboard-title-row">
+            <div>
+              <h2 class="dashboard-title">Riwayat Jawaban Masuk</h2>
+              <p style="font-size: 12px; color: var(--text-tertiary); margin-top: 2px;">Khusus Pemilik Form • Pacarmu tidak dapat melihat halaman ini.</p>
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <button class="btn btn-secondary" id="btnChangePin" style="padding: 8px 12px; font-size: 13px;" title="Ubah PIN Akses">
+                🔑 Ganti PIN
+              </button>
+              <button class="btn btn-secondary" id="btnRefreshSubmissions" style="padding: 8px 12px; font-size: 13px;">
+                🔄 Segarkan
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Owner Sub-tabs Navigation -->
+        <div class="owner-tabs-nav">
+          <button class="owner-tab-btn active" id="tabBtnRiwayat">
+            📜 Riwayat Jawaban Masuk
+          </button>
+          <button class="owner-tab-btn" id="tabBtnTemplate">
+            ✏️ Kustomisasi Pertanyaan (Editor Template)
+          </button>
+        </div>
+
+        <!-- TAB CONTENT 1: RIWAYAT -->
+        <div id="ownerRiwayatTab">
+          <!-- Share on Mobile Banner -->
+          <div class="share-banner" id="shareBanner">
+            <div class="qr-box" id="qrContainer" title="Scan QR Code untuk buka di HP pacar">
+              <!-- QR Code Canvas / Img -->
+            </div>
+            <div class="share-info">
+              <h4>Link untuk Pacarmu (Hanya Bisa Mengisi)</h4>
+              <p>Berikan link ini ke pacarmu. Tampilannya murni kuesioner tanpa akses ke riwayat jawaban:</p>
+              <div class="share-copy-row">
+                <span class="url-badge" id="shareUrlText">Memuat link...</span>
+                <button class="btn btn-secondary" id="btnCopyShareUrl" style="padding: 5px 10px; font-size: 12px;">Salin Link Pacar</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Submissions List -->
+          <div class="submissions-container">
+            <h3 style="font-size: 15px; font-weight: 700; margin-bottom: 12px; color: var(--text-secondary);">
+              Daftar Jawaban yang Masuk (<span id="submissionsCountBadge">0</span>)
+            </h3>
+            <div class="submissions-list" id="submissionsList">
+              <!-- Populated via JavaScript -->
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB CONTENT 2: TEMPLATE EDITOR -->
+        <div id="ownerTemplateTab" style="display: none;">
+          <div class="template-toolbar">
+            <div class="template-toolbar-top">
+              <div>
+                <h3 style="font-size: 16px; font-weight: 700;">Pengaturan Template Pertanyaan</h3>
+                <p style="font-size: 12px; color: var(--text-tertiary); margin-top: 2px;">
+                  Ubah atau tambahkan pertanyaan kuesioner. Pertanyaan yang disimpan akan langsung aktif untuk dijawab pacarmu.
+                </p>
+              </div>
+              <span class="template-status-badge default" id="templateStatusBadge">
+                ✨ Template Bawaan
+              </span>
+            </div>
+            <div class="template-actions-row">
+              <button class="btn btn-primary" id="btnSaveTemplate" style="padding: 8px 16px; font-size: 13px;">
+                💾 Simpan Perubahan Template
+              </button>
+              <button class="btn btn-secondary" id="btnResetTemplate" style="padding: 8px 14px; font-size: 13px;">
+                🔄 Reset ke Template Bawaan (11 Bagian)
+              </button>
+              <button class="btn btn-secondary" id="btnAddSection" style="padding: 8px 14px; font-size: 13px;">
+                ➕ Tambah Bagian Baru
+              </button>
+            </div>
+          </div>
+
+          <div id="templateSectionsList">
+            <!-- Dynamic Sections Editor Injected by JavaScript -->
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Fixed Bottom Bar for Form Navigation -->
+    <footer class="bottom-bar" id="formBottomBar" style="display: none;">
+      <div class="bottom-bar-inner">
+        <button class="btn btn-secondary" id="btnPrevSection">
+          <span>← Kembali</span>
+        </button>
+
+        <button class="btn btn-secondary" id="btnOpenDrawer" style="padding: 12px 14px;" title="Daftar Bagian">
+          <span>📑 Menu</span>
+        </button>
+
+        <button class="btn btn-primary" id="btnNextSection">
+          <span id="btnNextLabel">Lanjut ke Bagian 2</span>
+          <span>→</span>
+        </button>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Bottom Sheet Drawer: Section Jump Menu -->
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+  <aside class="drawer-sheet" id="drawerSheet" aria-label="Menu Navigasi Bagian">
+    <div class="sheet-handle"></div>
+    <div class="sheet-header">
+      <h3>Pilih Bagian (11 Bagian)</h3>
+      <button class="btn-icon" id="btnCloseDrawer" style="width: 32px; height: 32px;">✕</button>
+    </div>
+    <div class="sheet-list" id="drawerList">
+      <!-- Injected by JavaScript -->
+    </div>
+  </aside>
+
+  <!-- Detailed Submission Modal (Reviewer View) -->
+  <div class="detail-modal-sheet" id="detailModal">
+    <div class="detail-content">
+      <div class="detail-header">
+        <div>
+          <h3 id="modalCandidateName">Detail Jawaban Kandidat</h3>
+          <p id="modalSubmitDate" style="font-size: 12px; color: var(--text-tertiary);"></p>
+        </div>
+        <button class="btn-icon" id="btnCloseDetailModal" style="width: 34px; height: 34px;">✕</button>
+      </div>
+
+      <div class="detail-body" id="detailModalBody">
+        <!-- Rendered QA by section -->
+      </div>
+
+      <div style="padding: 14px 20px; border-top: 1px solid var(--border-subtle); display: flex; justify-content: space-between; gap: 10px;">
+        <button class="btn btn-secondary" id="btnPrintSubmission">🖨️ Cetak / Simpan PDF</button>
+        <button class="btn btn-whatsapp" id="btnShareWaReview">💬 Salin Ringkasan ke WA</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Verifikasi PIN Pemilik (Riwayat) -->
+  <div class="detail-modal-sheet" id="pinModal">
+    <div class="detail-content" style="max-width: 380px; text-align: center;">
+      <div class="detail-header" style="justify-content: space-between;">
+        <h3 style="font-size: 16px;">🔒 Akses Pemilik Form</h3>
+        <button class="btn-icon" id="btnClosePinModal" style="width: 32px; height: 32px;">✕</button>
+      </div>
+      <div style="padding: 24px 20px;">
+        <p style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 16px; line-height: 1.5;">
+          Halaman riwayat hanya dapat diakses oleh pemilik form. Masukkan PIN keamananmu:
+        </p>
+        <input 
+          type="password" 
+          id="pinInput" 
+          maxlength="6" 
+          inputmode="numeric" 
+          placeholder="••••" 
+          style="text-align: center; font-size: 26px; letter-spacing: 8px; width: 170px; margin: 0 auto 16px; padding: 10px; display: block; border-radius: var(--radius-md);"
+        />
+        <div style="display: flex; gap: 8px; justify-content: center;">
+          <button class="btn btn-secondary" id="btnCancelPin" style="padding: 10px 16px;">Batal</button>
+          <button class="btn btn-primary" id="btnSubmitPin" style="padding: 10px 22px;">Buka Riwayat</button>
+        </div>
+        <p style="font-size: 11.5px; color: var(--text-tertiary); margin-top: 16px;">
+          PIN Default: <strong style="color: var(--text-accent);">1234</strong> (Bisa kamu ubah setelah masuk)
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast-notice" id="toastNotice" role="alert" aria-live="polite">Pesan notifikasi</div>
+
+  <!-- Scripts -->
+  <script src="js/questions.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/template-editor.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

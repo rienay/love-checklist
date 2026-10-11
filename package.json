@@ -1,0 +1,17 @@
+{
+  "name": "relationship-questionnaire",
+  "version": "1.0.0",
+  "description": "Mobile-Friendly Relationship & Commitment Questionnaire",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "express": "^5.3.0",
+    "qrcode": "^1.5.4"
+  }
+}
